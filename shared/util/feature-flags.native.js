@@ -8,6 +8,7 @@ const ff: FeatureFlags = {
   fsEnabled: __DEV__,
   impTeamChatEnabled: true,
   plansEnabled: false,
+  inlineImages: __DEV__,
 }
 
 if (__DEV__) {

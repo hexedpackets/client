@@ -7,6 +7,7 @@ import Box from './box'
 import Emoji from './emoji'
 import {globalStyles, globalColors, globalMargins} from '../styles'
 import {parseMarkdown, EmojiIfExists} from './markdown.shared'
+import flags from '../util/feature-flags'
 
 import type {Props} from './markdown'
 
@@ -96,11 +97,17 @@ function messageCreateComponent(type, key, children, options) {
         </Text>
       )
     case 'link':
-      return (
-        <Text type="BodyPrimaryLink" key={key} style={linkStyle} onClickURL={options.href}>
-          {children}
-        </Text>
-      )
+      const textLink = <Text type="BodyPrimaryLink" key={key} style={linkStyle} onClickURL={options.href}>{children}</Text>
+      if (flags.inlineImages && options.href.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+        return (
+          <Box key={key}>
+            {textLink}
+            <img draggable="false" src={options.href} style={{width: 320, height: 320}} />
+          </Box>
+        )
+      } else {
+        return textLink
+      }
     case 'text-block':
       return (
         <Text type="Body" key={key} style={textBlockStyle}>

@@ -6,6 +6,7 @@ export type FeatureFlags = {|
   fsEnabled: boolean,
   impTeamChatEnabled: boolean,
   plansEnabled: boolean,
+  inlineImages: boolean,
 |}
 
 const ff: FeatureFlags = {
@@ -14,6 +15,7 @@ const ff: FeatureFlags = {
   fsEnabled: false,
   impTeamChatEnabled: false,
   plansEnabled: false,
+  inlineImages: false,
 }
 
 export default ff
