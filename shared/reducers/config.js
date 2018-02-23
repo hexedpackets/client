@@ -89,6 +89,8 @@ export default function(
     }
     case ConfigGen.setOpenAtLogin:
       return state.set('openAtLogin', action.payload.open)
+    case ConfigGen.setInlineImages:
+      return state.set('inlineImages', action.payload.load)
     case 'remote:updateMenubarWindowID':
       return state.set('menubarWindowID', action.payload.id)
     // Saga only actions

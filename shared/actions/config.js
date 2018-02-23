@@ -300,10 +300,17 @@ function _setOpenAtLogin(action: ConfigGen.SetOpenAtLoginPayload) {
   }
 }
 
+function _setInlineImages(action: ConfigGen.SetInlineImagesPayload) {
+  if (action.payload.writeFile) {
+    setAppState({inlineImages: action.payload.load})
+  }
+}
+
 function* _getAppState(): Generator<any, void, any> {
   const state = yield Saga.call(getAppState)
   if (state) {
     yield Saga.put(ConfigGen.createSetOpenAtLogin({open: state.openAtLogin, writeFile: false}))
+    yield Saga.put(ConfigGen.createSetInlineImages({load: state.inlineImages, writeFile: false}))
   }
 }
 
@@ -322,6 +329,7 @@ function* configSaga(): Saga.SagaGenerator<any, any> {
     _loadAvatarHelperError
   )
   yield Saga.safeTakeEveryPure(ConfigGen.setOpenAtLogin, _setOpenAtLogin)
+  yield Saga.safeTakeEveryPure(ConfigGen.setInlineImages, _setInlineImages)
   yield Saga.fork(_getAppState)
 }
 

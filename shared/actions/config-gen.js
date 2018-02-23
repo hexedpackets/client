@@ -30,6 +30,7 @@ export const pushLoaded = 'config:pushLoaded'
 export const readyForBootstrap = 'config:readyForBootstrap'
 export const retryBootstrap = 'config:retryBootstrap'
 export const setInitialState = 'config:setInitialState'
+export const setInlineImages = 'config:setInlineImages'
 export const setOpenAtLogin = 'config:setOpenAtLogin'
 export const updateFollowing = 'config:updateFollowing'
 
@@ -66,6 +67,12 @@ export const createPushLoaded = (payload: $ReadOnly<{pushLoaded: boolean}>) => (
 export const createReadyForBootstrap = () => ({error: false, payload: undefined, type: readyForBootstrap})
 export const createRetryBootstrap = () => ({error: false, payload: undefined, type: retryBootstrap})
 export const createSetInitialState = (payload: $ReadOnly<{initialState: Types.InitialState}>) => ({error: false, payload, type: setInitialState})
+export const createSetInlineImages = (
+  payload: $ReadOnly<{
+    load: boolean,
+    writeFile: boolean,
+  }>
+) => ({error: false, payload, type: setInlineImages})
 export const createSetOpenAtLogin = (
   payload: $ReadOnly<{
     open: boolean,
@@ -101,6 +108,7 @@ export type PushLoadedPayload = More.ReturnType<typeof createPushLoaded>
 export type ReadyForBootstrapPayload = More.ReturnType<typeof createReadyForBootstrap>
 export type RetryBootstrapPayload = More.ReturnType<typeof createRetryBootstrap>
 export type SetInitialStatePayload = More.ReturnType<typeof createSetInitialState>
+export type SetInlineImagesPayload = More.ReturnType<typeof createSetInlineImages>
 export type SetOpenAtLoginPayload = More.ReturnType<typeof createSetOpenAtLogin>
 export type UpdateFollowingPayload = More.ReturnType<typeof createUpdateFollowing>
 
@@ -128,6 +136,7 @@ export type Actions =
   | More.ReturnType<typeof createReadyForBootstrap>
   | More.ReturnType<typeof createRetryBootstrap>
   | More.ReturnType<typeof createSetInitialState>
+  | More.ReturnType<typeof createSetInlineImages>
   | More.ReturnType<typeof createSetOpenAtLogin>
   | More.ReturnType<typeof createUpdateFollowing>
   | {type: 'common:resetStore', payload: void}

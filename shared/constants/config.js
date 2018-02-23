@@ -36,6 +36,7 @@ export const makeState: I.RecordFactory<Types._State> = I.Record({
   following: I.Set(),
   globalError: null,
   initialState: null,
+  inlineImages: false,
   kbfsPath: '',
   loggedIn: false,
   menubarWindowID: 0,

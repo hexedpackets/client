@@ -34,6 +34,7 @@ export type _State = {
   following: I.Set<string>,
   globalError: ?Error,
   initialState: ?InitialState,
+  inlineImages: boolean,
   kbfsPath: string,
   loggedIn: boolean,
   openAtLogin: boolean,

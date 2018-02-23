@@ -6,6 +6,8 @@ import {Box, Button, Text, Checkbox} from '../../common-adapters'
 type Props = {
   openAtLogin: boolean,
   onSetOpenAtLogin: (open: boolean) => void,
+  inlineImages: boolean,
+  onSetInlineImages: (load: boolean) => void,
   onDBNuke: () => void,
   onTrace: (durationSeconds: number) => void,
   onBack: () => void,
@@ -32,7 +34,12 @@ const Advanced = (props: Props) => (
           label="Open Keybase on startup"
           checked={props.openAtLogin}
           onCheck={props.onSetOpenAtLogin}
-        />
+          />
+        <Checkbox
+          label="Load remote images inline"
+          checked={props.inlineImages}
+          onCheck={props.onSetInlineImages}
+          />
       </Box>
     )}
     <Developer {...props} />

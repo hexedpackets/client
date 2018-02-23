@@ -10,6 +10,7 @@ import {connect, type TypedState} from '../../util/container'
 
 const mapStateToProps = (state: TypedState) => ({
   openAtLogin: state.config.openAtLogin,
+  inlineImages: state.config.inlineImages,
   traceInProgress: Constants.traceInProgress(state),
 })
 
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(createTrace({durationSeconds}))
   },
   onSetOpenAtLogin: (open: boolean) => dispatch(ConfigGen.createSetOpenAtLogin({open, writeFile: true})),
+  onSetInlineImages: (load: boolean) => dispatch(ConfigGen.createSetInlineImages({load, writeFile: true})),
 })
 
 const connectedAdvanced = compose(connect(mapStateToProps, mapDispatchToProps), HeaderHoc)(Advanced)
